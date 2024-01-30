@@ -9,7 +9,7 @@ spec:
     repoURL: https://kubernetes.github.io/ingress-nginx  # Replace with the Helm chart repository URL
     targetRevision: 4.9.1  # Replace with the version of the Helm chart
     helm:
-      releaseName: ingress-nginx  # Replace with the path to the Helm chart within the repository
+      releaseName: ingress-nginx/ingress-nginx  # Replace with the path to the Helm chart within the repository
   destination:
     server: "https://kubernetes.default.svc"  # Replace with the Kubernetes cluster URL
     namespace: ingress2  # The namespace where you want to install the Ingress Controller
