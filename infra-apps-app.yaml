@@ -12,3 +12,6 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: default
+  sshPrivateKeySecret:
+    name: private-repo-secret  # Name of the secret containing the SSH private key
+    key: sshPrivateKey
