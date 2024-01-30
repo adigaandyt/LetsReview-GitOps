@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-controller
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://charts.bitnami.com/bitnami"  # Replace with the Helm chart repository URL
+    targetRevision: "10.1.2"  # Replace with the version of the Helm chart
+    path: ingress-nginx/ingress-nginx  # Replace with the path to the Helm chart within the repository
+  destination:
+    server: "https://kubernetes.default.svc"  # Replace with the Kubernetes cluster URL
+    namespace: ingress2  # The namespace where you want to install the Ingress Controller
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
