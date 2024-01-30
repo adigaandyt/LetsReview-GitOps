@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: infra-apps-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "git@github.com:adigaandyt/ourlibrary_gitops.git"
+    path: "infra-apps"
+    targetRevision: HEAD
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: default
