@@ -1,0 +1,39 @@
+replicaCount: 3
+
+app:
+  config:
+    mongo:
+      architecture: "replicaset"
+      replicaCount: 3
+      auth:
+        enabled: true
+        username: myuser
+        password: mypass
+        mongodbDatabase: mydb
+      hosts:
+      - mongodb-0.mongodb-headless
+      - mongodb-1.mongodb-headless
+      - mongodb-2.mongodb-headless
+
+# Docker image details
+image:
+  repository: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library
+  tag: main-24
+
+# Values for MongoDB child/dependency chart
+mongodb:
+  fullnameOverride: mongodb
+  architecture: "replicaset"
+  replicaCount: 1
+  auth:
+    enabled: true
+    usernames: ["myuser"]
+    passwords: ["mypass"]
+    databases: ["mydb"]
+    existingSecret: "ourlib-secret"
+    rootUser: "root"
+    rootPassword: "rootpass"
+  persistence:
+    size: 1Gi
+  arbiter:
+    enabled: true

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ourlib-config
+data:
+  PORT: "8000"
+  MONGO_URL: mongodb://root:mypassword@mongodb-0.mongodb-headless:27017,mongodb-1.mongodb-headless:27017,mongodb-2.mongodb-headless:27017/mydb?ssl=true&replicaSet=myreplicaset
+#   MONGO_URL: mongodb://{{- if .Values.app.config.mongo.auth.username -}}
+#                            {{- .Values.app.config.mongo.auth.username -}}
+#                            {{- if .Values.app.config.mongo.auth.password -}}
+#                     usernames       :{{- .Values.app.config.mongo.auth.password -}}
+#                            {{- end -}}
+#                          @{{- end -}}
+#                          {{- join "," .Values.app.config.mongo.hosts -}}
+#                          :{{- default 27017 .Values.app.config.mongo.port }}
+
