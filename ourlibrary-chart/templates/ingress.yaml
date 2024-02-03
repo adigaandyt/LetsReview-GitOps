@@ -14,3 +14,8 @@ spec:
                 name: ourlib-service
                 port:
                   number: 8000
+  defaultBackend:
+    service:
+      name: ourlib-service
+      port:
+        number: 8000

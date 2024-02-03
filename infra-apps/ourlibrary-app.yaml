@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ourlibrary-app
+  namespace: argocd  # Namespace where the Argo CD Application will be created
+spec:
+  project: default  # Project name (You can create a project before this step)
+  source:
+    repoURL: git@github.com:adigaandyt/ourlibrary_gitops.git  # URL of your Helm chart repository
+    targetRevision: main  # The branch, tag, or commit you want to use
+    path: ourlibrary-chart  # Path to your Helm chart within the repository
+    helm:
+      valueFiles:
+        - values.yaml  # You can specify your Helm values files here if needed
+  destination:
+    server: 'https://kubernetes.default.svc'  # URL of your Kubernetes cluster
+    namespace: default  # Namespace where the Helm chart should be deployed
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true # automatically creates our custom namespace
+    automated:
+      prune: true  # Optionally, enable automatic pruning of resources not defined in your Helm chart

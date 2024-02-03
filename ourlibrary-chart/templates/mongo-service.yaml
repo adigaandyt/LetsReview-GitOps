@@ -5,9 +5,9 @@ metadata:
   labels:
     app: mongo
 spec:
-  clusterIP: None  # this line is what makes it a *Headless* service!
+  clusterIP: None # this line is what makes it a *Headless* service!
   ports:
-  - port: 27017
-    name: mongo
+    - port: 27017
+      name: mongo
   selector:
     app: mongo

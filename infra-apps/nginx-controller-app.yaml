@@ -3,18 +3,19 @@ kind: Application
 metadata:
   name: ingress-controller
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://kubernetes.github.io/ingress-nginx  # Replace with the Helm chart repository URL
-    targetRevision: 4.9.0  # Replace with the version of the Helm chart
-    chart: ingress-nginx  # Replace with the path to the Helm chart within the repository
+    repoURL: https://kubernetes.github.io/ingress-nginx # Replace with the Helm chart repository URL
+    targetRevision: 4.9.0 # Replace with the version of the Helm chart
+    chart: ingress-nginx # Replace with the path to the Helm chart within the repository
   destination:
-    server: "https://kubernetes.default.svc"  # Replace with the Kubernetes cluster URL
-    namespace: ingress2  # The namespace where you want to install the Ingress Controller
-    createNamespace: true   
-  # syncPolicy:
-  #   automated:
-  #     prune: true
-  #     selfHeal: true
-  #
+    server: "https://kubernetes.default.svc" # Replace with the Kubernetes cluster URL
+    namespace: ingress # The namespace where you want to install the Ingress Controller
+    createNamespace: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
