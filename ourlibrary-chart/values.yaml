@@ -35,5 +35,14 @@ mongodb:
     rootPassword: "rootpass"
   persistence:
     size: 1Gi
+    volumeClaimTemplates:
+      - metadata:
+          name: mongo-data
+        spec:
+          storageClassName: ebs-csi-gp3
+          accessModes: [ "ReadWriteOnce" ]
+          resources:
+            requests:
+              storage: 150Mi
   arbiter:
     enabled: true
