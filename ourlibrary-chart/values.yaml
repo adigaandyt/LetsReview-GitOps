@@ -4,7 +4,7 @@ app:
 
     image: 
       rep: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library
-      tag: 1.0.0
+      tag: 1.0.4
       pullPolicy: IfNotPresent 
 
   # Can pass these to a config file for example but here I'm just using a hardcoded secret
