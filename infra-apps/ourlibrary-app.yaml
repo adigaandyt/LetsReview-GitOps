@@ -19,4 +19,5 @@ spec:
     syncOptions:
       - CreateNamespace=true # automatically creates our custom namespace
     automated:
-      prune: true  # Optionally, enable automatic pruning of resources not defined in your Helm chart
+      prune: true # or false, depending on your needs
+      selfHeal: true # or false, based on preference
