@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ourlib-ingress
 spec:
-  ingressClassName: nginx 
+  ingressClassName: internal-nginx 
   rules:
     - host: ourlib.ddns.net
       http:
