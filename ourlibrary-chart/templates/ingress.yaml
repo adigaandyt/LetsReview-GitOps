@@ -11,7 +11,7 @@ spec:
           - path: /
             pathType: Prefix
             backend:
-              servic: 
+              service: 
                 name: ourlib-service
                 port:
                   number: 80
