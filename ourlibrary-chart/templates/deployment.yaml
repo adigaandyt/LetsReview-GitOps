@@ -25,7 +25,7 @@ spec:
           limits:
             memory: "128Mi"  # Limit memory usage to 128 megabytes
             cpu: "500m"      # Limit CPU usage to 500 milliCPU (0.5 CPU core)     
-        # Replace data in the .env folder of both backend and frontend
+        #Replace data in the .env folder of both backend and frontend 
         env:
         - name: JWT_KEY
           valueFrom:
