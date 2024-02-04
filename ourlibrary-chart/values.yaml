@@ -11,9 +11,9 @@ app:
         password: mypass
         mongodbDatabase: mydb
       hosts:
-      - mongodb-0.mongodb-headless
-      - mongodb-1.mongodb-headless
-      - mongodb-2.mongodb-headless
+        - mongodb-0.mongodb-headless
+        - mongodb-1.mongodb-headless
+        - mongodb-2.mongodb-headless
 
 # Docker image details
 image:
@@ -34,6 +34,8 @@ mongodb:
     rootUser: "root"
     rootPassword: "rootpass"
   persistence:
+    enabled: true
+    storageClass: "ebs-csi-gp3" # Specify the StorageClass you created for EBS gp3 volumes
     size: 1Gi
   arbiter:
     enabled: true
