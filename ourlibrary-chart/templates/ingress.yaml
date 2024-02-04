@@ -12,7 +12,7 @@ spec:
             pathType: Prefix
             backend:
               service: 
-                name: ourlib-service
+                name: bla
                 namespace: ourlib
                 port:
                   number: 80
