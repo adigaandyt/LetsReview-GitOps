@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: "git@github.com:adigaandyt/ourlibrary_gitops.git"
-    path: "infra-apps"
+    path: "infra"
     targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
