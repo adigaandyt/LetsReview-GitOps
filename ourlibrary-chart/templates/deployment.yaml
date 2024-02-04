@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ourlib-deployment
 spec:
-  replicas: 1  #Adjust the number of replicas as needed
+  replicas: {{ .Values.app.deployment.replicaCount }}  #Adjust the number of replicas as needed
   selector:
     matchLabels:
       app: ourlib
@@ -12,19 +12,12 @@ spec:
       labels:
         app: ourlib
     spec:
-      initContainers:
-      - name: init-mongodb
-        image: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library:main-24
-        command:
-            - "sh"
-            - "-c"
-            - "sleep 30"
-        # Add environment variables or configuration as needed for the initContainer
       containers:
       - name: ourlib-container
-        image: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library:main-24  # Replace with your ECR URL and image tag
+        image: "{{ .Values.app.deployment.image.rep }}:{{ .Values.app.deployment.image.tag }}" 
+        imagePullPolicy: {{.Values.app.deployment.image.pullPolicy}}
         ports:
-        - containerPort: 8000  # Your application listens on port 8000
+        - containerPort: 8000 # could also call from the port in the env section 
         resources:
           requests:
             memory: "64Mi"  # Request 64 megabytes of memory
@@ -49,6 +42,9 @@ spec:
             configMapKeyRef:
               name: ourlib-config
               key: PORT
-    #   dependsOn:
-    #   - name: mongodb-service-name  # Replace with the actual name of your MongoDB service
-    #       condition: Ready
+        readinessProbe:  # Add a readiness probe here
+          httpGet:
+            path: /healthz  # You can customize this path based on your MongoDB pod's readiness check
+            port: 27017 #MongoDB readiness check port, this is hardcoded because it's just the standard mongo port 
+          initialDelaySeconds: 15  # Delay the probe until after the container has started
+          periodSeconds: 10  # Check every 10 seconds

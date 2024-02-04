@@ -1,36 +1,37 @@
-replicaCount: 3
-
 app:
-  config:
-    mongo:
-      architecture: "replicaset"
-      replicaCount: 3
-      auth:
-        enabled: true
-        username: myuser
-        password: mypass
-        mongodbDatabase: mydb
-      hosts:
-        - mongodb-0.mongodb-headless
-        - mongodb-1.mongodb-headless
-        - mongodb-2.mongodb-headless
+  deployment:
+    replicaCount: 1
 
-# Docker image details
-image:
-  repository: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library
-  tag: main-24 # Jenkins changes this tag to trigger ArgoCD
+    image: 
+      rep: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library
+      tag: 1.0.0
+      pullPolicy: IfNotPresent 
+
+  # Can pass these to a config file for example but here I'm just using a hardcoded secret
+  # Matching the values here to the mongodb helm values wont actually do anything
+  # You have to change the hardcoded secret  
+  # since you don't pass values to secrets
+  
+  mongo:
+    username: myuser
+    password: mypass
+    mongodbDatabase: mydb
+    hosts:
+      - mongodb-0.mongodb-headless
+      - mongodb-1.mongodb-headless
+      - mongodb-2.mongodb-headless
 
 # Values for MongoDB child/dependency chart
 mongodb:
   fullnameOverride: mongodb
   architecture: "replicaset"
-  replicaCount: 1
+  replicaCount: 3
   auth:
     enabled: true
     usernames: ["myuser"]
     passwords: ["mypass"]
     databases: ["mydb"]
-    existingSecret: "ourlib-secret"
+    existingSecret: "ourlib-secret" # This secret has to include  mongodb-passwords/mongodb-root-password/mongodb-replica-set-key
     rootUser: "root"
     rootPassword: "rootpass"
   persistence:
