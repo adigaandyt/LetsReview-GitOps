@@ -13,7 +13,6 @@ spec:
             backend:
               service: 
                 name: ourlib-service
-                namespace: ourlib
                 port:
                   number: 80
 resource:
