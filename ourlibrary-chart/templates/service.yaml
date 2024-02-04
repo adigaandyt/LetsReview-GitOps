@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ourlib-service
+  namepsace: ourlib
 spec:
   selector:
     app: ourlib
