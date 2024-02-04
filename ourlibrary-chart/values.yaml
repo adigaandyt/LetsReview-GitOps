@@ -1,6 +1,6 @@
 app:
   deployment:
-    replicaCount: 3
+    replicaCount: 1
 
     image: 
       rep: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library
