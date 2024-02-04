@@ -11,5 +11,7 @@ spec:
           - path: /
             pathType: Prefix
             backend:
-              servicename: ourlib-service
-              servicePort: 80
+              servic: 
+                name: ourlib-service
+                port:
+                  number: 80
