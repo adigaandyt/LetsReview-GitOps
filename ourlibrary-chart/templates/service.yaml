@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ourlib-service
-  namepsace: ourlib
+  namespace: ourlib
 spec:
   selector:
     app: ourlib
@@ -10,3 +10,8 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8000
+      name: "1"
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      name: "2"
