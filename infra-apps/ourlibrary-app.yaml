@@ -9,9 +9,6 @@ spec:
     repoURL: git@github.com:adigaandyt/ourlibrary_gitops.git  # URL of your Helm chart repository
     targetRevision: main  # The branch, tag, or commit you want to use
     path: ourlibrary-chart  # Path to your Helm chart within the repository
-    helm:
-      valueFiles:
-        - values.yaml  # You can specify your Helm values files here if needed
   destination:
     server: 'https://kubernetes.default.svc'  # URL of your Kubernetes cluster
     namespace: ourlib  # Namespace where the Helm chart should be deployed
