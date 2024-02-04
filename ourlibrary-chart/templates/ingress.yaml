@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: ourlib-ingress
 spec:
+  ingressClassName: ingress #namespace of ingress controller of the app
   rules:
     - host: ourlib.ddns.net
       http:
