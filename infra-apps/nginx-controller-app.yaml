@@ -13,7 +13,7 @@ spec:
     chart: ingress-nginx # Replace with the path to the Helm chart within the repository
   destination:
     server: "https://kubernetes.default.svc" # Replace with the Kubernetes cluster URL
-    namespace: ingress # The namespace where you want to install the Ingress Controller
+    namespace: ingress-app # The namespace where you want to install the Ingress Controller
     createNamespace: true
   syncPolicy:
     automated:
