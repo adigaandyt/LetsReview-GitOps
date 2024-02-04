@@ -8,11 +8,10 @@ spec:
     - host: ourlib.ddns.net
       http:
         paths:
-          - backend:
+          - path: /
+            pathType: Prefix
+            backend:
               service: 
                 name: ourlib-service
                 port:
                   number: 8000
-          - path: /
-            pathType: Prefix
-            
