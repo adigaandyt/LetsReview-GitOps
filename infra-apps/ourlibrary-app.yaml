@@ -14,8 +14,7 @@ spec:
         - values.yaml  # You can specify your Helm values files here if needed
   destination:
     server: 'https://kubernetes.default.svc'  # URL of your Kubernetes cluster
-    namespace: default  # Namespace where the Helm chart should be deployed
-    createNamespace: true
+    namespace: ourlib  # Namespace where the Helm chart should be deployed
   syncPolicy:
     syncOptions:
       - CreateNamespace=true # automatically creates our custom namespace
