@@ -7,10 +7,6 @@ spec:
     app: ourlib
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8000
-      name: "front"
-    - protocol: TCP
       port: 8000
       targetPort: 8000
-      name: "back"
+      name: "front"
