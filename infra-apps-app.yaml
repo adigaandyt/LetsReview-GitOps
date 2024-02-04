@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: infra-apps-app
+  name: parent-app
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -9,15 +9,15 @@ spec:
   project: default
   source:
     repoURL: "git@github.com:adigaandyt/ourlibrary_gitops.git"
-    path: "infra"
+    path: "infra-apps"
     targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
     namespace: default
     createNamespace: true
-  sshPrivateKeySecret:
-    name: private-repo-secret  # Name of the secret containing the SSH private key
-    key: sshPrivateKey
+  # sshPrivateKeySecret:
+  #   name: private-repo-secret  # Name of the secret containing the SSH private key
+  #   key: sshPrivateKey
   syncPolicy:
     automated:
       prune: true # or false, depending on your needs
