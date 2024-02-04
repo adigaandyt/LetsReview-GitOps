@@ -15,6 +15,7 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'  # URL of your Kubernetes cluster
     namespace: default  # Namespace where the Helm chart should be deployed
+    createNamespace: true
   syncPolicy:
     syncOptions:
       - CreateNamespace=true # automatically creates our custom namespace

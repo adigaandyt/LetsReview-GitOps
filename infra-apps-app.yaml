@@ -19,6 +19,8 @@ spec:
   #   name: private-repo-secret  # Name of the secret containing the SSH private key
   #   key: sshPrivateKey
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       prune: true # or false, depending on your needs
       selfHeal: true # or false, based on preference
