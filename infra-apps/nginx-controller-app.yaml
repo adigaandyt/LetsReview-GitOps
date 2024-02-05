@@ -16,8 +16,8 @@ spec:
     namespace: ingress # The namespace where you want to install the Ingress Controller
     createNamespace: true
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
+    # syncOptions:
+    #   - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
