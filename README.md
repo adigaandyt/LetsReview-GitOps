@@ -27,6 +27,7 @@ A simple diagram breakdown of the app of apps setup
 ## GitOps Workflow
 
 This repo is a part of the CI/CD deployment for Our_Library webapp, ArgoCD is in charge of the CD portion while Jenkins handles CI
+
 ![App of apps diagram](/diagrams/GitOps%20flow.png)
 ### Diagram breakdown
 1) Dev's push code to the application repo
