@@ -25,7 +25,7 @@ app:
 mongodb:
   fullnameOverride: mongodb
   architecture: "replicaset"
-  replicaCount: 2
+  replicaCount: 3
   auth:
     enabled: true
     usernames: ["myuser"]
@@ -39,4 +39,4 @@ mongodb:
     storageClass: "ebs-csi-gp3" # Specify the StorageClass you created for EBS gp3 volumes
     size: 1Gi
   arbiter:
-    enabled: false
+    enabled: true
