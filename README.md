@@ -30,7 +30,7 @@ This repo is a part of the CI/CD deployment for Our_Library webapp, ArgoCD is in
 
 ![App of apps diagram](/diagrams/GitOps%20flow.png)
 ### Diagram breakdown
-1) Dev's push code to the application repo
+1) Devs push code to the application repo
 2) App Repo sends a webhook to Jenkins announcing there's new code
 3) Jenkins pulls the code from repo and builds an image using the Dockerfile that's on the repo
 4) Jenkins runs health check and a test script to see that the app and all of it's API calls are working
