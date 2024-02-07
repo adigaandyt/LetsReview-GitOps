@@ -27,15 +27,10 @@ spec:
             cpu: "500m"      # Limit CPU usage to 500 milliCPU (0.5 CPU core)     
         #Replace data in the .env folder of both backend and frontend 
         env:
-        - name: JWT_KEY
-          valueFrom:
-            secretKeyRef:
-              name: ourlib-secret
-              key: JWT_KEY
         - name: MONGO_URL
           valueFrom:
-            secretKeyRef:
-              name: ourlib-secret
+            configMapKeyRef:
+              name: ourlib-config
               key: MONGO_URL
         - name: DNS_ADDRESS
           valueFrom:

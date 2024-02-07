@@ -4,4 +4,5 @@ metadata:
   name: ourlib-config
 data:
   DNS_ADDRESS: "http://ourlib.ddns.net"
-  DATABASE_NAME: mydb
+  DATABASE_NAME: {{.Values.app.mongo.mongodbDatabase}}
+  MONGO_URL: mongodb://{{.Values.app.mongo.username}}:{{.Values.app.mongo.password}}@{{(index .Values.app.mongo.hosts 0)}}:27017/{{.Values.app.mongo.mongodbDatabase}}?replicaSet=rs0
