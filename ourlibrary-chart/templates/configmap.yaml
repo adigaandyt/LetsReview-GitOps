@@ -4,3 +4,4 @@ metadata:
   name: ourlib-config
 data:
   DNS_ADDRESS: "http://ourlib.ddns.net"
+  DATABASE_NAME: mydb

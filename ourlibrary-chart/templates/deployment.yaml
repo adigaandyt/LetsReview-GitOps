@@ -42,6 +42,11 @@ spec:
             configMapKeyRef:
               name: ourlib-config
               key: DNS_ADDRESS
+        - name: DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: ourlib-config
+              key: DATABASE_NAME
         # readinessProbe:  # Add a readiness probe here
         #   httpGet:
         #     path: /  # You can customize this path based on your MongoDB pod's readiness check
