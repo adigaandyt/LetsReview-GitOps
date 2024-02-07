@@ -17,7 +17,7 @@ spec:
         image: "{{ .Values.app.deployment.image.rep }}:{{ .Values.app.deployment.image.tag }}" 
         imagePullPolicy: {{.Values.app.deployment.image.pullPolicy}}
         ports:
-        - containerPort: 8000 # could also call from the port in the env section 
+        - containerPort: 7070 # could also call from the port in the env section 
         resources:
           requests:
             memory: "64Mi"  # Request 64 megabytes of memory
@@ -42,6 +42,9 @@ spec:
             configMapKeyRef:
               name: ourlib-config
               key: DATABASE_NAME
+        - name: VERSION
+          value: "{{ .Values.app.deployment.image.tag }}"
+
         # readinessProbe:  # Add a readiness probe here
         #   httpGet:
         #     path: /  # You can customize this path based on your MongoDB pod's readiness check
