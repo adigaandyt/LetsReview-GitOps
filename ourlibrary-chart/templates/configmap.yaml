@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: ourlib-config
 data:
-  PORT: "8000"
+  DNS_ADDRESS: "http://ourlib.ddns.net"

@@ -37,11 +37,11 @@ spec:
             secretKeyRef:
               name: ourlib-secret
               key: MONGO_URL
-        - name: PORT
+        - name: DNS_ADDRESS
           valueFrom:
             configMapKeyRef:
               name: ourlib-config
-              key: PORT
+              key: DNS_ADDRESS
         # readinessProbe:  # Add a readiness probe here
         #   httpGet:
         #     path: /  # You can customize this path based on your MongoDB pod's readiness check
