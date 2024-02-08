@@ -8,15 +8,12 @@ spec:
   sources:
     - repoURL: git@github.com:adigaandyt/ourlibrary_gitops.git
       targetRevision: main
-      path: kp-chart/kube-prometheus-stack-56.6.2.tgz
-      helm:
-        valueFiles:
-          - kp-chart/values.yml
+      path: kube-prometheus-stack
   destination:
     server: https://kubernetes.default.svc
     namespace: kps
   syncPolicy:
-    syncOptions:
+    syncOptions:kube-prometheus-stack
       - CreateNamespace=true
       - ServerSideApply=true
     automated:
