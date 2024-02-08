@@ -44,10 +44,3 @@ spec:
               key: DATABASE_NAME
         - name: VERSION
           value: "{{ .Values.app.deployment.image.tag }}"
-
-        # readinessProbe:  # Add a readiness probe here
-        #   httpGet:
-        #     path: /  # You can customize this path based on your MongoDB pod's readiness check
-        #     port: 27017 #MongoDB readiness check port, this is hardcoded because it's just the standard mongo port 
-        #   initialDelaySeconds: 15  # Delay the probe until after the container has started
-        #   periodSeconds: 10  # Check every 10 seconds
