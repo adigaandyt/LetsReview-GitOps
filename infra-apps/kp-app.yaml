@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kps
   syncPolicy:
-    syncOptions:kube-prometheus-stack
+    syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
     automated:
