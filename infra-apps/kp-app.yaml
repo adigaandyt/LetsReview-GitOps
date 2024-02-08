@@ -3,20 +3,14 @@ kind: Application
 metadata:
   name: kps-application
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 56.6.2
-      chart: kube-prometheus-stack
+    - repoURL: git@github.com:adigaandyt/ourlibrary_gitops.git
+      path: kp-chart/kube-prometheus-stack-56.6.2.tgz
       helm:
         valueFiles:
-          - "$mycharts/values/kps-values.yml"
-    - repoURL: git@github.com:yuval2313/taskit-gitops.git
-      targetRevision: HEAD
-      ref: mycharts
+          - kp-chart/values.yml
   destination:
     server: https://kubernetes.default.svc
     namespace: kps
