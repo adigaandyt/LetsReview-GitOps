@@ -7,6 +7,7 @@ spec:
   project: default
   sources:
     - repoURL: git@github.com:adigaandyt/ourlibrary_gitops.git
+      targetRevision: main
       path: kp-chart/kube-prometheus-stack-56.6.2.tgz
       helm:
         valueFiles:
