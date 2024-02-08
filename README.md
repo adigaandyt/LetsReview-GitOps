@@ -1,5 +1,5 @@
 # Our_Library GitOps 
-This repository contains the GitOps configuration for the Our_Library WebApp, using ArgoCD to manage deployments to an EKS cluster. The configuration defines the desired state of our applications and infrastructure, ensuring that our deployment environment is declarative, version-controlled, and automated. ArgoCD is currently hosted [here](http://ourlibargo.ddns.net/) for demonstration purposes.
+This repository contains the GitOps configuration for [LetsReview](http://ourlib.ddns.net/), using ArgoCD to manage deployments to an EKS cluster. The configuration defines the desired state of our applications and infrastructure, ensuring that our deployment environment is declarative, version-controlled, and automated. ArgoCD is currently hosted [here](http://ourlibargo.ddns.net/) for demonstration purposes.
 
 ArgoCD deploys the following using the **app of apps pattern**:
 - Our_Library Application
