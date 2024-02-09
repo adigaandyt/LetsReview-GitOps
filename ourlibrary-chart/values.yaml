@@ -41,7 +41,14 @@ mongodb:
   arbiter:
     enabled: true
   metrics:
-  image: bitnami/mongodb-exporter:0.40.0-debian-11-r7
+  registry: docker.io
+  image:
+    registry: docker.io
+    repository: bitnami/mongodb-exporter
+    tag: 0.40.0-debian-11-r6
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
   serviceMonitor:
     enabled: true
     namespace: "kps"
