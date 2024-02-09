@@ -8,4 +8,4 @@ spec:
     matchLabels:
       app: ourlib
   endpoints:
-  - port: 7070
+  - port: "80"
