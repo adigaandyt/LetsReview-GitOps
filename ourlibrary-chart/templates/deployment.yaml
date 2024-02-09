@@ -17,7 +17,7 @@ spec:
         image: "{{ .Values.app.deployment.image.rep }}:{{ .Values.app.deployment.image.tag }}" 
         imagePullPolicy: {{.Values.app.deployment.image.pullPolicy}}
         ports:
-        - name: web
+        - name: web # For prometheus 
           containerPort: 7070 # could also call from the port in the env section 
         resources:
           requests:
