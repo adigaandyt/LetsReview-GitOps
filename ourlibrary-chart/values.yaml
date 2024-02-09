@@ -40,21 +40,21 @@ mongodb:
     size: 1Gi
   arbiter:
     enabled: true
-  metrics:
-    enabled: true
-    image:
-      registry: docker.io
-      repository: bitnami/mogodb-exporter
-      tag: 0.40.0-debian-11-r6
-      digest: ""
-      pullPolicy: IfNotPresent
-      pullSecrets: []
-    serviceMonitor:
-      enabled: true
-      namespace: "kps"
-      interval: 30s
-      # selector:
-      #   matchLabels:
-      #     app: mongodb
-      honorLabels: true
-      jobLabel: "mongodb-job"
+  # metrics:
+  #   enabled: true
+  #   image:
+  #     registry: docker.io
+  #     repository: bitnami/mogodb-exporter
+  #     tag: 0.40.0-debian-11-r6
+  #     digest: ""
+  #     pullPolicy: IfNotPresent
+  #     pullSecrets: []
+  #   serviceMonitor:
+  #     enabled: true
+  #     namespace: "kps"
+  #     interval: 30s
+  #     # selector:
+  #     #   matchLabels:
+  #     #     app: mongodb
+  #     honorLabels: true
+  #     jobLabel: "mongodb-job"
