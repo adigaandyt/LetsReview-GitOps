@@ -3,16 +3,22 @@ kind: Ingress
 metadata:
   name: ourlib-ingress
   namespace: ourlib
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"  # Reference your ClusterIssuer
 spec:
-  ingressClassName: nginx 
+  ingressClassName: nginx
   rules:
-    - host: ourlib.ddns.net
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service: 
-                name: ourlib-service
-                port:
-                  number: 80
+  - host: ourlib.ddns.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ourlib-service
+            port:
+              number: 80
+  tls:  # TLS configuration starts here
+  - hosts:
+    - ourlib.ddns.net
+    secretName: ourlib-tls  # cert-manager will store the obtained certificate here
