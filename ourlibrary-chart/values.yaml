@@ -41,6 +41,7 @@ mongodb:
   arbiter:
     enabled: true
   metrics:
+    enabled: true
     image:
       registry: docker.io
       repository: bitnami/mongodb-exporter
