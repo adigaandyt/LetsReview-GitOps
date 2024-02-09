@@ -1,17 +1,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: ourlib
+  name: ourlib-monitor
   namespace: kps
-  labels:
-    prometheus: main
 spec:
-  namespaceSelector:
-    matchesNames:
-      - ourlib
   selector:
     matchLabels:
       app: ourlib
   endpoints:
-    - port: web
-      path: /metrics
+  - port: web
+    path: /metrics
