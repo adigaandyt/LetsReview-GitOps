@@ -41,10 +41,14 @@ mongodb:
   arbiter:
     enabled: true
   metrics:
-    serviceMonitor:
-      enabled: true
-      namespace: "kps"
-      interval: 30s
-
+  serviceMonitor:
+    enabled: true
+    namespace: "kps"
+    interval: 30s
+    selector:
+      matchLabels:
+        prometheus: prometheus
+    honorLabels: true
+    jobLabel: "mongodb-job"
 
 
