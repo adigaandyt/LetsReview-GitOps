@@ -55,6 +55,6 @@ mongodb:
       interval: 30s
       selector:
         matchLabels:
-          app: prometheus
+          app: mongodb
       honorLabels: true
       jobLabel: "mongodb-job"
