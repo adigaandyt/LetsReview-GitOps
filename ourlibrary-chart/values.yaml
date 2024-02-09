@@ -55,6 +55,6 @@ mongodb:
       interval: 30s
       selector:
         matchLabels:
-          app: "ourlib"
+          app: mongodb
       honorLabels: true
       jobLabel: "ourlib-endpoints"
