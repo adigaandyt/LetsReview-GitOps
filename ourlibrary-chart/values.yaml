@@ -41,7 +41,7 @@ mongodb:
   arbiter:
     enabled: true
   metrics:
-  image: bitnami/mongodb-exporter:0.11.2-debian-10-r382
+  image: bitnami/mongodb-exporter:0.40.0-debian-11-r7
   serviceMonitor:
     enabled: true
     namespace: "kps"
