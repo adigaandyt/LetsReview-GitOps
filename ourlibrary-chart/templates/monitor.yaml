@@ -5,7 +5,7 @@ metadata:
   namespace: kps
 spec:
   namespaceSelector:
-    matchesNames:
+    matchNames:
       - ourlib
   selector:
     matchLabels:
