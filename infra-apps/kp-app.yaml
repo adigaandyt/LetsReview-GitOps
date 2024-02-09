@@ -12,7 +12,7 @@ spec:
       helm:
         valueFiles:
           - "$mycharts/values/kps-values.yaml"
-    - repoURL: git@github.com:yuval2313/taskit-gitops.git
+    - repoURL: git@github.com:adigaandyt/ourlibrary_gitops.git
       targetRevision: HEAD
       ref: mycharts
   destination:
