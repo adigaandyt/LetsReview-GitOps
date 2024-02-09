@@ -2,10 +2,13 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: ourlib-app
-  namespace: ourlib
+  namespace: kps
 spec:
   selector:
     matchLabels:
       app: ourlib
+      namespace: ourlib
   endpoints:
-  - port: web
+- interval: 30s
+    targetPort: 9090
+    path: /metrics
