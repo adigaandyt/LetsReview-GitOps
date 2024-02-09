@@ -9,6 +9,5 @@ spec:
       app: ourlib
       namespace: ourlib
   endpoints:
-- interval: 30s
-    targetPort: 9090
-    path: /metrics
+    - interval: 30s
+      targetPort: 80
