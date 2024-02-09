@@ -17,7 +17,8 @@ spec:
         image: "{{ .Values.app.deployment.image.rep }}:{{ .Values.app.deployment.image.tag }}" 
         imagePullPolicy: {{.Values.app.deployment.image.pullPolicy}}
         ports:
-        - containerPort: 7070 # could also call from the port in the env section 
+        - name: web
+          containerPort: 7070 # could also call from the port in the env section 
         resources:
           requests:
             memory: "64Mi"  # Request 64 megabytes of memory

@@ -8,5 +8,6 @@ spec:
     app: ourlib
   ports:
     - protocol: TCP
+      name: web
       port: 80
       targetPort: 7070
