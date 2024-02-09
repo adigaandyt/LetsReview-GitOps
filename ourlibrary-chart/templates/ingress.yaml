@@ -7,7 +7,7 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt"  # Reference your ClusterIssuer
 spec:
   ingressClassName: nginx
-  rules:
+  rules:1.0.3
   - host: ourlib.ddns.net
     http:
       paths:
