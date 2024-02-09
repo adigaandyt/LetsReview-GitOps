@@ -4,6 +4,9 @@ metadata:
   name: ourlib-monitor
   namespace: kps
 spec:
+  namespaceSelector:
+    matchesNames:
+      - ourlib
   selector:
     matchLabels:
       app: ourlib
