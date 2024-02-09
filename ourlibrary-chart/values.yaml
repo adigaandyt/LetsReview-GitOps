@@ -40,3 +40,8 @@ mongodb:
     size: 1Gi
   arbiter:
     enabled: true
+  serviceMonitor:
+    enabled: true
+    namespace: "kps"
+    interval: 30s
+
