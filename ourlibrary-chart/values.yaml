@@ -53,8 +53,8 @@ mongodb:
       enabled: true
       namespace: "kps"
       interval: 30s
-      selector:
-        matchLabels:
-          app: mongodb
+      # selector:
+      #   matchLabels:
+      #     app: mongodb
       honorLabels: true
       jobLabel: "mongodb-job"
