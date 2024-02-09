@@ -41,10 +41,10 @@ mongodb:
   arbiter:
     enabled: true
   metrics:
-    enabled: true
+    #  enabled: true
     # image:
     #   registry: docker.io
-    #   repository: bitnami/mongodb-exporter
+    #   repository: bitnami/mogodb-exporter
     #   tag: 0.40.0-debian-11-r6
     #   digest: ""
     #   pullPolicy: IfNotPresent
