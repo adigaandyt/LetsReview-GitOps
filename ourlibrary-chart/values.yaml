@@ -51,10 +51,10 @@ mongodb:
       pullSecrets: []
     serviceMonitor:
       enabled: true
-      namespace: "kps"
+      namespace: "prometheus"
       interval: 30s
-      # selector:
-      #   matchLabels:
-      #     app: mongodb
+      selector:
+        matchLabels:
+          app: ourlib
       honorLabels: true
       jobLabel: "ourlib-endpoints"
