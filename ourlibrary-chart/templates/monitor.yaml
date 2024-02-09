@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ourlib-app
+  namespace: ourlib
+spec:
+  selector:
+    matchLabels:
+      app: ourlib
+  endpoints:
+  - port: 7070
