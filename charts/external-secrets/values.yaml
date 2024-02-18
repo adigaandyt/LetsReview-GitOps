@@ -4,7 +4,7 @@ replicaCount: 1
 revisionHistoryLimit: 10
 
 image:
-  repository: ghcr.io/external-secrets/external-secrets
+  repository: ghcr.io/external-secrets/external-secrets #Should also be hosted on ECR 
   pullPolicy: IfNotPresent
   # -- The image tag to use. The default is the chart appVersion.
   tag: ""
@@ -257,7 +257,7 @@ webhook:
     # switch to using cert-manager (installed separately) to automatically issue
     # and renew the webhook certificate. This chart does not install
     # cert-manager for you, See https://cert-manager.io/docs/
-    enabled: false
+    enabled: true
     # -- Automatically add the cert-manager.io/inject-ca-from annotation to the
     # webhooks and CRDs. As long as you have the cert-manager CA Injector
     # enabled, this will automatically setup your webhook's CA to the one used
@@ -270,9 +270,9 @@ webhook:
       # -- For the Certificate created by this chart, setup the issuer. See
       # https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.IssuerSpec
       issuerRef:
-        group: cert-manager.io
-        kind: "Issuer"
-        name: "my-issuer"
+      group: cert-manager.io
+      kind: ClusterIssuer
+      name: letsencrypt
       # -- Set the requested duration (i.e. lifetime) of the Certificate. See
       # https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.CertificateSpec
       # One year by default.
@@ -406,6 +406,7 @@ certController:
   topologySpreadConstraints: []
 
   affinity: {}
+
 
   # -- Run the certController on the host network
   hostNetwork: false
