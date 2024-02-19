@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: ourlib-config
 data:
-  DNS_ADDRESS: "ourlib.ddns.net"
+  DNS_ADDRESS: "https://ourlib.ddns.net"
   DATABASE_NAME: {{.Values.app.mongo.mongodbDatabase}}
   MONGO_URL: mongodb://{{.Values.app.mongo.username}}:{{.Values.app.mongo.password}}@mongodb-headless:27017/{{.Values.app.mongo.mongodbDatabase}}?replicaSet=rs0
