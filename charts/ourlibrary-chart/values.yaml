@@ -1,4 +1,5 @@
 app:
+  dns: ourlib.ddns.net
   deployment:
     replicaCount: 1
 
