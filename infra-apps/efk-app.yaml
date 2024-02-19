@@ -11,7 +11,7 @@ spec:
     path: charts/EFK  # Path to your Helm chart within the repository
   destination:
     server: 'https://kubernetes.default.svc'  # URL of your Kubernetes cluster
-    namespace: efklog  # Namespace where the Helm chart should be deployed
+    namespace: efk  # Namespace where the Helm chart should be deployed
   syncPolicy:
     syncOptions:
       - CreateNamespace=true # automatically creates our custom namespace
