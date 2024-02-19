@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: https://ourlib.ddns.net/
+  - host: ourlib.ddns.net
     http:
       paths:
       - path: /
@@ -20,5 +20,5 @@ spec:
               number: 80
   tls:  # TLS configuration starts here
   - hosts:
-    - https://ourlib.ddns.net/
+    - ourlib.ddns.net
     secretName: ourlib-tls  # cert-manager will store the obtained certificate here
