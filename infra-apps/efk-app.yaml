@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: EFK-app
+  name: efk-app
   namespace: argocd  # Namespace where the Argo CD Application will be created
 spec:
   project: default  # Project name (You can create a project before this step)
