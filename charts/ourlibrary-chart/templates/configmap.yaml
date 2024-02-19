@@ -5,6 +5,4 @@ metadata:
 data:
   DNS_ADDRESS: "https://{{ .Values.app.dns }}"
   DATABASE_NAME: {{.Values.app.mongo.mongodbDatabase}}
-  MONGO_URL: "mongodb://{{ .Values.app.mongo.username }}:{{ .Values.app.mongo.password }}" +
-             "@mongodb-headless:27017/{{ .Values.app.mongo.mongodbDatabase }}" +
-             "?replicaSet=rs0"
+  MONGO_URL: "mongodb://{{ .Values.app.mongo.username }}:{{ .Values.app.mongo.password }}@mongodb-headless:27017/{{ .Values.app.mongo.mongodbDatabase }}?replicaSet=rs0"
