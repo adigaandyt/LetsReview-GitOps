@@ -8,54 +8,21 @@ app:
       tag: 1.0.4
       pullPolicy: Always 
 
-  # Can pass these to a config file for example but here I'm just using a hardcoded secret
-  # Matching the values here to the mongodb helm values wont actually do anything
-  # You have to change the hardcoded secret  
-  # since you don't pass values to secrets
-  
-  mongo:
-    username: myuser
-    password: mypass
-    mongodbDatabase: mydb
-    hosts:
-      - mongodb-0.mongodb-headless
-      - mongodb-1.mongodb-headless
-      - mongodb-2.mongodb-headless
-
 # Values for MongoDB child/dependency chart
 mongodb:
   fullnameOverride: mongodb
   architecture: "replicaset"
-  replicaCount: 2 # seems like it needs at least 3 repilcas?
+  replicaCount: 2 
   auth:
     enabled: true
-    usernames: ["myuser"]
-    passwords: ["mypass"]
-    databases: ["mydb"]
-    existingSecret: "ourlib-secret" # This secret has to include  mongodb-passwords/mongodb-root-password/mongodb-replica-set-key
+    # usernames: ["myuser"]
+    # passwords: ["mypass"]
+    # databases: ["mydb"]
+    existingSecret: "external-db-secrets" 
     rootUser: "root"
-    rootPassword: "rootpass"
   persistence:
     enabled: true
-    storageClass: "ebs-csi-gp3" # Specify the StorageClass you created for EBS gp3 volumes
+    storageClass: "ebs-csi-gp3" 
     size: 1Gi
   arbiter:
     enabled: true
-  # metrics:
-  #   enabled: true
-  #   image:
-  #     registry: docker.io
-  #     repository: bitnami/mogodb-exporter
-  #     tag: 0.40.0-debian-11-r6
-  #     digest: ""
-  #     pullPolicy: IfNotPresent
-  #     pullSecrets: []
-  #   serviceMonitor:
-  #     enabled: true
-  #     namespace: "prometheus"
-  #     interval: 30s
-  #     selector:
-  #       matchLabels:
-  #         app: mongodb
-  #     honorLabels: true
-  #     jobLabel: "ourlib-endpoints"

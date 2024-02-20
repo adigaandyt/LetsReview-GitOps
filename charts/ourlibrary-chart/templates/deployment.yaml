@@ -27,21 +27,28 @@ spec:
             memory: "128Mi"  # Limit memory usage to 128 megabytes
             cpu: "500m"      # Limit CPU usage to 500 milliCPU (0.5 CPU core)     
         #Replace data in the .env folder of both backend and frontend 
+        #username
+        #password
+        #database
+        #mongodb-passwords
+        #mongodb-root-password
+        #mongodb-replica-set-key
+
         env:
         - name: MONGO_URL
           valueFrom:
-            configMapKeyRef:
-              name: ourlib-config
+            secretKeyRef:
+              name: external-db-secrets
               key: MONGO_URL
-        - name: DNS_ADDRESS
-          valueFrom:
-            configMapKeyRef:
-              name: ourlib-config
-              key: DNS_ADDRESS
         - name: DATABASE_NAME
           valueFrom:
             configMapKeyRef:
-              name: ourlib-config
+              name: external-db-secrets
               key: DATABASE_NAME
+        - name: DNS_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: ourlib-config
+                key: DNS_ADDRESS
         - name: VERSION
           value: "{{ .Values.app.deployment.image.tag }}"
