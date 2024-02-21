@@ -42,7 +42,7 @@ spec:
               key: MONGO_URL
         - name: DATABASE_NAME
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: external-db-secrets
               key: DATABASE_NAME
         - name: DNS_ADDRESS
