@@ -46,9 +46,9 @@ spec:
               name: external-db-secrets
               key: DATABASE_NAME
         - name: DNS_ADDRESS
-            valueFrom:
-              configMapKeyRef:
-                name: ourlib-config
-                key: DNS_ADDRESS
+          valueFrom:
+            configMapKeyRef:
+              name: ourlib-config
+              key: DNS_ADDRESS
         - name: VERSION
           value: "{{ .Values.app.deployment.image.tag }}"
