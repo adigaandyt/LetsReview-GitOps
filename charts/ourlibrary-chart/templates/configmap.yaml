@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: ourlib-config
 data:
-  DNS_ADDRESS: "https://{{ .Values.app.dns }}"
+  DNS_ADDRESS: https://{{ .Values.app.dns }}
