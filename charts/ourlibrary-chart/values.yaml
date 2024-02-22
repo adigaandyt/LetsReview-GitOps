@@ -16,13 +16,13 @@ mongodb:
   auth:
     enabled: true
     usernames: ["myuser"]
-    # passwords: ["mypass"]
+    # passwords: external-db-secrets created by Terraform
     databases: ["mydb"]
     existingSecret: "external-db-secrets" 
     rootUser: "root"
   persistence:
     enabled: true
-    storageClass: "gp2" 
+    storageClass: "ebs-csi-gp3" 
     size: 1Gi
   arbiter:
     enabled: true
