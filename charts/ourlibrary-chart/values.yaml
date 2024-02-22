@@ -22,7 +22,7 @@ mongodb:
     rootUser: "root"
   persistence:
     enabled: true
-    storageClass: "ebs-csi-gp3" 
+    storageClass: "gp2" 
     size: 1Gi
   arbiter:
     enabled: true
