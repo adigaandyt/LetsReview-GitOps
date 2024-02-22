@@ -15,9 +15,9 @@ mongodb:
   replicaCount: 2 
   auth:
     enabled: true
-    # usernames: ["myuser"]
+    usernames: ["myuser"]
     # passwords: ["mypass"]
-    # databases: ["mydb"]
+    databases: ["mydb"]
     existingSecret: "external-db-secrets" 
     rootUser: "root"
   persistence:
