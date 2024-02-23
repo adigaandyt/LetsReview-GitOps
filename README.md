@@ -1,6 +1,8 @@
 # LetsReview GitOps (STILL A WORK IN PROGRESS)
 This repository contains the GitOps configuration for [LetsReview](https://github.com/adigaandyt/LetsReview), using ArgoCD to manage deployments to an EKS cluster. The configuration defines the desired state of our applications and infrastructure, ensuring that our deployment environment is declarative, version-controlled, and automated.
 
+It also containers the workflow of my entire DevOps Portfolio Project
+
 ArgoCD deploys the following using the **app of apps pattern**:
 - Our_Library Application
   - The App's Helm Chart
@@ -21,11 +23,6 @@ Deploy ArgoCD on your cluster and apply infra-apps-app.yaml or use the ArgoCD UI
 In this project ArgoCD get's installed using Terraform and a bootstrap application add the repo to ArgoCD automatically on startup
 [IaC Repo](https://github.com/adigaandyt/ourlibrary-infra) 
 
-## GitOps App of apps pattern
-A simple diagram breakdown of the app of apps setup
-
-![App of apps diagram](/diagrams/App%20of%20apps.png)
-
 ## GitOps Workflow
 
 This repo is a part of the CI/CD deployment for [LetsReview](https://github.com/adigaandyt/LetsReview), ArgoCD is in charge of the CD portion while Jenkins handles CI
@@ -44,3 +41,37 @@ This repo is a part of the CI/CD deployment for [LetsReview](https://github.com/
 10) EKS Cluster pulls image from ECR and deploys it replacing the old deplyoment
 
 Using a workflow like this means that the only thing developers have to do is push code onto the repo, Jenkins and ArgoCD will handle the testing and deployment automatically 
+
+
+
+# DevOps Portfolio Project
+## Overview
+This is here to summraize in phases the entire project in one place to demonstrate the technologies I used to a implement CI/CD pipeline
+
+### Technology stack
+- **Ticketing** - Trello to track tasks and missions for the day/week
+- **Development** - Flask with REST API
+- **Containerization** - Docker
+- **Docker image registry**- ECR
+- **Source Code Management** - GitHub
+- **DataBase** - MongoDB
+- **Scripting** - Bash
+- **Infrastructure as Code** - Terraform
+- **Cloud** - AWS
+- **Kubernetes** - EKS
+- **Kubernetes** packaging - Helm
+- **Ingress** - Nginx ingress controller
+- **CI/CD** - Jenkins
+- **GitOps** - ArgoCD
+- **Logging** and Monitoring - EFK stack, Prometheus, and Grafana
+
+## Phase 1 : Repository Setup 
+I set up 3 repositories for this project,
+1) [LetsReview-App](https://github.com/adigaandyt/LetsReview-App) which contains-
+> -  The flask app we're deploying
+> -  Dockerfile to create an image of the app
+> -  Docker-compose file to create a local environment for tests, with a diagram
+> -  Jenkinsfile for the CI pipeline
+> -  Test script for an E2E test for all the API calls
+
+2) [LetsReview-Infra](https://github.com/adigaandyt/LetsReview-Infra)
