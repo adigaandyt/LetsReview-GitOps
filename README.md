@@ -65,13 +65,18 @@ This is here to summraize in phases the entire project in one place to demonstra
 - **GitOps** - ArgoCD
 - **Logging** and Monitoring - EFK stack, Prometheus, and Grafana
 
-## Phase 1 : Repository Setup 
+## Phase 0: The App
+First I wrote a simple flask application with a single HTML file [LetsReview-App](https://github.com/adigaandyt/LetsReview-App).
+The app has a few API calls and is doing CRUD operations with a MongoDB database
+
+## Phase 1: Repository Setup 
 I set up 3 repositories for this project,
-1) [LetsReview-App](https://github.com/adigaandyt/LetsReview-App) which contains-
-> -  The flask app we're deploying
-> -  Dockerfile to create an image of the app
-> -  Docker-compose file to create a local environment for tests, with a diagram
-> -  Jenkinsfile for the CI pipeline
-> -  Test script for an E2E test for all the API calls
+1) [LetsReview-App](https://github.com/adigaandyt/LetsReview-App) The application repo which contains
+    - The flask app we're deploying
+    - Dockerfile to create an image of the app
+    - Docker-compose file to create a local environment for tests, with a diagram
+    - Jenkinsfile for the CI pipeline
+    - Test script for an E2E test for all the API calls
+
 
 2) [LetsReview-Infra](https://github.com/adigaandyt/LetsReview-Infra)
