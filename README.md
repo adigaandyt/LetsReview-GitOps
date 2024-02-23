@@ -1,5 +1,5 @@
 # LetsReview GitOps (STILL A WORK IN PROGRESS)
-This repository contains the GitOps configuration for [LetsReview](http://ourlib.ddns.net/), using ArgoCD to manage deployments to an EKS cluster. The configuration defines the desired state of our applications and infrastructure, ensuring that our deployment environment is declarative, version-controlled, and automated. ArgoCD is currently hosted [here](http://ourlibargo.ddns.net/) for demonstration purposes.
+This repository contains the GitOps configuration for [LetsReview](https://github.com/adigaandyt/LetsReview), using ArgoCD to manage deployments to an EKS cluster. The configuration defines the desired state of our applications and infrastructure, ensuring that our deployment environment is declarative, version-controlled, and automated.
 
 ArgoCD deploys the following using the **app of apps pattern**:
 - Our_Library Application
@@ -7,9 +7,9 @@ ArgoCD deploys the following using the **app of apps pattern**:
   - MongoDB Helm Chart
   - AWS EBS CSI Driver
 - Nginx Controller
-- Cert Manager (to be added)
-- Kube Prometheus Stack (to be added)
-- Elasticsearch Fluentd Kibana Stack (to be added)
+- Cert Manager 
+- Kube Prometheus Stack 
+- Elasticsearch Fluentd Kibana Stack
 
 ## Prerequisites
 - An EKS Cluster running (could also use other Kubernetes clusters you just won't need the AWS EBS CSI Driver)
@@ -17,7 +17,9 @@ ArgoCD deploys the following using the **app of apps pattern**:
 - Credentials for the ArgoCD to access this repo
 
 ## Usage
-Deploy ArgoCD on your cluster and apply infra-apps-app.yaml or use the ArgoCD UI and use the + New App option, copy paste the yaml file into the EDIT AS YAML section
+Deploy ArgoCD on your cluster and apply infra-apps-app.yaml or use the ArgoCD UI and use the + New App option, copy paste the yaml file into the EDIT AS YAML section.
+In this project ArgoCD get's installed using Terraform and a bootstrap application add the repo to ArgoCD automatically on startup
+[IaC Repo](https://github.com/adigaandyt/ourlibrary-infra) 
 
 ## GitOps App of apps pattern
 A simple diagram breakdown of the app of apps setup
@@ -26,7 +28,7 @@ A simple diagram breakdown of the app of apps setup
 
 ## GitOps Workflow
 
-This repo is a part of the CI/CD deployment for Our_Library webapp, ArgoCD is in charge of the CD portion while Jenkins handles CI
+This repo is a part of the CI/CD deployment for [LetsReview](https://github.com/adigaandyt/LetsReview), ArgoCD is in charge of the CD portion while Jenkins handles CI
 
 ![App of apps diagram](/diagrams/GitOps%20flow.png)
 ### Diagram breakdown
