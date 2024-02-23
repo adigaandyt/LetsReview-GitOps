@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ourlib-ingress
-  namespace: ourlib
+  name: {{ .Values.app.name }}-ingress
+  namespace: {{ .Values.app.name }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"  # Reference your ClusterIssuer
 spec:
@@ -15,10 +15,10 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: ourlib-service
+            name: {{ .Values.app.name }}-service
             port:
               number: 80
   tls:  # TLS configuration starts here
   - hosts:
     - {{.Values.app.dns}}
-    secretName: ourlib-tls  # cert-manager will store the obtained certificate here
+    secretName: {{ .Values.app.name }}-tls  # cert-manager will store the obtained certificate here

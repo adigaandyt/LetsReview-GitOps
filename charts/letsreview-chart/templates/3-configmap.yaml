@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: ourlib-config
+  name: {{ .Values.app.name }}-config
 data:
   DNS_ADDRESS: "https://{{ .Values.app.dns }}"

@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ourlib-deployment
+  name:  {{ .Values.app.name }}-deployment
 spec:
   replicas: {{ .Values.app.deployment.replicaCount }}  #Adjust the number of replicas as needed
   selector:
     matchLabels:
-      app: ourlib
+      app: {{ .Values.app.name }}
   template:
     metadata:
       labels:
-        app: ourlib
+        app: {{ .Values.app.name }}
     spec:
       containers:
-      - name: ourlib-container
+      - name: {{ .Values.app.name }}-container
         image: "{{ .Values.app.deployment.image.rep }}:{{ .Values.app.deployment.image.tag }}" 
         imagePullPolicy: {{.Values.app.deployment.image.pullPolicy}}
         ports:
@@ -48,7 +48,7 @@ spec:
         - name: DNS_ADDRESS
           valueFrom:
             configMapKeyRef:
-              name: ourlib-config
+              name: {{ .Values.app.name }}-config
               key: DNS_ADDRESS
         - name: VERSION
           value: "{{ .Values.app.deployment.image.tag }}"

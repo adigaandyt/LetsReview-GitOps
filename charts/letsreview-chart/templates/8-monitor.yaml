@@ -1,15 +1,15 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: ourlib-monitor
+  name: {{ .Values.app.name }}-monitor
   namespace: prometheus
 spec:
   namespaceSelector:
     matchNames:
-      - ourlib
+      - {{ .Values.app.name }}
   selector:
     matchLabels:
-      app: ourlib
+      app: {{ .Values.app.name }}
   endpoints:
   - port: web
     path: /metrics

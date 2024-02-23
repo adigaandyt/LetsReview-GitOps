@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ourlib-service
-  namespace: ourlib
+  name: {{ .Values.app.name }}-service
+  namespace: {{ .Values.app.name }}
   labels:
-    app: ourlib
+    app: {{ .Values.app.name }}
 spec:
   selector:
-    app: ourlib
+    app: {{ .Values.app.name }}
   ports:
     - protocol: TCP
       name: web
