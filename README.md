@@ -98,4 +98,17 @@ I set up 3 repositories for this project,
 I wrote a simple single file flask application with a few REST API endpoints that does CRUD operations with a MongoDB database, and added a single HTML page to have NGINX serve static content, this wasn't the focus of the project so it was make fast and simple with GET/POST/PUT/DELETE requests and a /metrics endpoint for prometheus with log outputs for EFK
 
 ## Phase 4: Containerization
+I wrote a dockerfile to containerize the application and to host it's image on ECR, and a docker-compose file for local testing, but because this is such a simple application I didn't use a multi-stage dockerfile, however, I did include a dockerfile for a different application that does have a multi-stage build just to demonstrate it
+
+## Phase 5: CI/CD Pipeline
+Wrote a Jenkinsfile to have a CI/CD Pipeline which has the following steps:
+  -  Checkout application repo - Pull the application code
+  -  Build - Run docker build 
+  -  Unit Test - run the docker-compose to have a 3 tier application setup and run a health check
+  -  E2E Test - using the compose from before run a test for every API request
+  -  Hanlde version - check the latest tag and incriminite the patch by 1
+  -  Tag Image and Github commit (application repo) - If the tests pass then add a version tag to the commit we pulled
+  -  Push tagged image to ECR - Tag the image with the new patch and push it to ECR
+  -  Push new value to GitOps repo - Push the tag to the values file on the GitOps repo to trigger ArgoCD to update our cluster's state
+The Jenkins file uses a .env.groovy file to pass the nessacry values such as the image and repos needed so you can use it in a different project and functions to handle versioning and tags
 
