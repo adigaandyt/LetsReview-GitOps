@@ -43,7 +43,6 @@ This repo is a part of the CI/CD deployment for [LetsReview](https://github.com/
 Using a workflow like this means that the only thing developers have to do is push code onto the repo, Jenkins and ArgoCD will handle the testing and deployment automatically 
 
 
-
 # DevOps Portfolio Project
 ## Overview
 This is here to summraize in phases the entire project in one place to demonstrate the technologies I used to a implement CI/CD pipeline
@@ -64,10 +63,6 @@ This is here to summraize in phases the entire project in one place to demonstra
 - **CI/CD** - Jenkins
 - **GitOps** - ArgoCD
 - **Logging** and Monitoring - EFK stack, Prometheus, and Grafana
-
-## Phase 0: The App
-First I wrote a simple flask application with a single HTML file [LetsReview-App](https://github.com/adigaandyt/LetsReview-App).
-The app has a few API calls and is doing CRUD operations with a MongoDB database
 
 ## Phase 1: Repository Setup 
 I set up 3 repositories for this project,
