@@ -43,7 +43,6 @@ This repo is a part of the CI/CD deployment for [LetsReview](https://github.com/
 Using a workflow like this means that the only thing developers have to do is push code onto the repo, Jenkins and ArgoCD will handle the testing and deployment automatically 
 
 
-
 # DevOps Portfolio Project
 ## Overview
 This is here to summraize in phases the entire project in one place to demonstrate the technologies I used to a implement CI/CD pipeline
@@ -65,9 +64,10 @@ This is here to summraize in phases the entire project in one place to demonstra
 - **GitOps** - ArgoCD
 - **Logging** and Monitoring - EFK stack, Prometheus, and Grafana
 
-## Phase 0: The App
-First I wrote a simple flask application with a single HTML file [LetsReview-App](https://github.com/adigaandyt/LetsReview-App).
-The app has a few API calls and is doing CRUD operations with a MongoDB database
+  
+## Phase 0: Trello and diagrams
+Before beginning to code or setting up anything, I first created a trello board to track my overall goals and daily goals and added bugs as they happen to keep track of my progress and to know what my next goal is.
+I then drew a rough outline of the whole project and made a diagram encapsulating just to know roughly where I'm headed, the diagram changed and expanded as the project advanced.
 
 ## Phase 1: Repository Setup 
 I set up 3 repositories for this project,
@@ -79,4 +79,59 @@ I set up 3 repositories for this project,
     - Test script for an E2E test for all the API calls
 
 
-2) [LetsReview-Infra](https://github.com/adigaandyt/LetsReview-Infra)
+2) [LetsReview-Infra](https://github.com/adigaandyt/LetsReview-Infra) Infarstructure as code repo which containts
+    -  Terraform code for the AWS Infarstratcture that will host the application
+    -  Terraform modules for Network, EKS, Nodes and ArgoCD
+    -  ArgoCD Values file
+  
+3) [LetsReview-GitOps](https://github.com/adigaandyt/LetsReview-GitOps) - GitOps repository used to manage the state of the cluster using this repository as the single source of truth and ArgoCD, utilizing an app of apps deployment pattern. It contains:
+   - A `parent-app.yaml` file which acts as the parent application.
+   - Helm charts for:
+     - The application - The image is created and hosted on ECR, with the pipeline from [LetsReview-App](https://github.com/adigaandyt/LetsReview-App).
+     - MongoDB - For stateful set pods as the database.
+     - Cert-manager - For TLS management.
+     - EFK Stack - For logging.
+     - Kibana & Prometheus - For monitoring.
+     - Ingress NGINX - To provide an ingress controller.
+
+## Phase 3: Development
+I wrote a simple single file flask application with a few REST API endpoints that does CRUD operations with a MongoDB database, and added a single HTML page to have NGINX serve static content, this wasn't the focus of the project so it was make fast and simple with GET/POST/PUT/DELETE requests and a /metrics endpoint for prometheus with log outputs for EFK
+
+## Phase 4: Containerization
+I wrote a dockerfile to containerize the application and to host it's image on ECR, and a docker-compose file for local testing, but because this is such a simple application I didn't use a multi-stage dockerfile, however, I did include a dockerfile for a different application that does have a multi-stage build just to demonstrate it
+
+## Phase 5: CI/CD Pipeline
+Wrote a Jenkinsfile to have a CI/CD Pipeline which has the following steps:
+  -  Checkout application repo - Pull the application code
+  -  Build - Run docker build 
+  -  Unit Test - run the docker-compose to have a 3 tier application setup and run a health check
+  -  E2E Test - using the compose from before run a test for every API request
+  -  Hanlde version - check the latest tag and incriminite the patch by 1
+  -  Tag Image and Github commit (application repo) - If the tests pass then add a version tag to the commit we pulled
+  -  Push tagged image to ECR - Tag the image with the new patch and push it to ECR
+  -  Push new value to GitOps repo - Push the tag to the values file on the GitOps repo to trigger ArgoCD to update our cluster's state
+The Jenkins file uses a .env.groovy file to pass the nessacry values such as the image and repos needed so you can use it in a different project and functions to handle versioning and tags
+
+## Phase 6: Helm and GitOps
+I've provisioned a Kubernetes cluster using Terraform with AWS EKS for my application, I created the infrastructure using modules I wrote:
+  -  **Network Module** - A module for provisiong network resources needed for the app which includes:
+     - *VPC* - The virtual network that hosts everything, set cidr block based on user input
+     - *Public Subnets* - Creates public subnets based on a Count input 
+     - *Route Table* and Internet Gateway - for handling traffic to and inside the subnets
+  -  **EKS Module** - A module that creates an EKS Cluster and an IAM Role for the cluster to assume, the role has the (AmazonEKSClusterPolicy)[https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html] attached (Amazon EKS use this role to manage nodes and services needed to run the cluster)
+  -  **Nodes Module** - A module that creates a nodegroup (size based on input) and creates an IAM Role with a few polocies attached
+     - [AmazonEKSWorkerNodePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSWorkerNodePolicy.html) - Allows nodes to connect to the cluster
+     - [AmazonEKS_CNI_Policy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKS_CNI_Policy.html) - Allows nodes on the cluster to communicate with each other and get IP addresses
+     - [AmazonEC2ContainerRegistryReadOnly](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEC2ContainerRegistryReadOnly.html) - Allows nodes to download images from ECR
+     - [AmazonEBSCSIDriverPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEBSCSIDriverPolicy.html) - Allows cluster to use StorageClass to dynamiaclly allocate EBS
+   
+     The **Nodes Module** also includes addons that get created on the cluster:
+       -   aws-ebs-csi-driver - A Kubernetes Container Storage Interface (CSI) plugin that provides Amazon EBS storage for your cluster.
+       -   kube-proxy - Maintains network rules on each Amazon EC2 node. It enables network communication to your Pods.
+       -   coredns - A flexible, extensible DNS server that can serve as the Kubernetes cluster DNS. 
+       -   vpc-cni - A [Kubernetes container network interface (CNI) plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) that provides native VPC networking for your cluster.
+
+As you can see, we have addons and we have polocies to allow our nodes to use those addons, all of these except the CSI Driver are installed automatiaclly on the cluster by AWS but I still included them in the code for demonstration
+
+  -  **ArgoCD Module** - This module deploys ArgoCD onto the cluster on launch and is pointed to our GitOps repo using `bootstrap-app.yaml` so when we run ```Terraform apply``` the infarstructue goes up with ArgoCD already running and all the charts on the GitOps repo also running, it also creates two kuberentes secrets using AWS Secret Manager, an SSH key for the GitOps repo and the MongoDB database info
+
