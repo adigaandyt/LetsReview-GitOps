@@ -112,3 +112,26 @@ Wrote a Jenkinsfile to have a CI/CD Pipeline which has the following steps:
   -  Push new value to GitOps repo - Push the tag to the values file on the GitOps repo to trigger ArgoCD to update our cluster's state
 The Jenkins file uses a .env.groovy file to pass the nessacry values such as the image and repos needed so you can use it in a different project and functions to handle versioning and tags
 
+## Phase 4: Kubernetes Infrastructure
+I've provisioned a Kubernetes cluster using Terraform with AWS EKS for my application, I created the infrastructure using modules I wrote:
+  -  **Network Module** - A module for provisiong network resources needed for the app which includes:
+     - *VPC* - The virtual network that hosts everything, set cidr block based on user input
+     - *Public Subnets* - Creates public subnets based on a Count input 
+     - *Route Table* and Internet Gateway - for handling traffic to and inside the subnets
+  -  **EKS Module** - A module that creates an EKS Cluster and an IAM Role for the cluster to assume, the role has the (AmazonEKSClusterPolicy)[https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html] attached (Amazon EKS use this role to manage nodes and services needed to run the cluster)
+  -  **Nodes Module** - A module that creates a nodegroup (size based on input) and creates an IAM Role with a few polocies attached
+     - [AmazonEKSWorkerNodePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKSWorkerNodePolicy.html) - Allows nodes to connect to the cluster
+     - [AmazonEKS_CNI_Policy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEKS_CNI_Policy.html) - Allows nodes on the cluster to communicate with each other and get IP addresses
+     - [AmazonEC2ContainerRegistryReadOnly](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEC2ContainerRegistryReadOnly.html) - Allows nodes to download images from ECR
+     - [AmazonEBSCSIDriverPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonEBSCSIDriverPolicy.html) - Allows cluster to use StorageClass to dynamiaclly allocate EBS
+   
+     The **Nodes Module** also includes addons that get created on the cluster:
+       -   aws-ebs-csi-driver - A Kubernetes Container Storage Interface (CSI) plugin that provides Amazon EBS storage for your cluster.
+       -   kube-proxy - Maintains network rules on each Amazon EC2 node. It enables network communication to your Pods.
+       -   coredns - A flexible, extensible DNS server that can serve as the Kubernetes cluster DNS. 
+       -   vpc-cni - A [Kubernetes container network interface (CNI) plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) that provides native VPC networking for your cluster.
+
+As you can see, we have addons and we have polocies to allow our nodes to use those addons, all of these except the CSI Driver are installed automatiaclly on the cluster by AWS but I still included them in the code for demonstration
+
+  -  **ArgoCD Module** - This module deploys ArgoCD onto the cluster on launch and is pointed to our GitOps repo using `bootstrap-app.yaml` so when we run ```Terraform apply``` the infarstructue goes up with ArgoCD already running and all the charts on the GitOps repo also running, it also creates two kuberentes secrets using AWS Secret Manager, an SSH key for the GitOps repo and the MongoDB database info
+
