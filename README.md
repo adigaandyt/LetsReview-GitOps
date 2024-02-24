@@ -112,7 +112,7 @@ Wrote a Jenkinsfile to have a CI/CD Pipeline which has the following steps:
   -  Push new value to GitOps repo - Push the tag to the values file on the GitOps repo to trigger ArgoCD to update our cluster's state
 The Jenkins file uses a .env.groovy file to pass the nessacry values such as the image and repos needed so you can use it in a different project and functions to handle versioning and tags
 
-## Phase 4: Kubernetes Infrastructure
+## Phase 6: Helm and GitOps
 I've provisioned a Kubernetes cluster using Terraform with AWS EKS for my application, I created the infrastructure using modules I wrote:
   -  **Network Module** - A module for provisiong network resources needed for the app which includes:
      - *VPC* - The virtual network that hosts everything, set cidr block based on user input
