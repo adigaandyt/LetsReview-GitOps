@@ -64,6 +64,11 @@ This is here to summraize in phases the entire project in one place to demonstra
 - **GitOps** - ArgoCD
 - **Logging** and Monitoring - EFK stack, Prometheus, and Grafana
 
+  
+## Phase 0: Trello and diagrams
+Before beginning to code or setting up anything, I first created a trello board to track my overall goals and daily goals and added bugs as they happen to keep track of my progress and to know what my next goal is.
+I then drew a rough outline of the whole project and made a diagram encapsulating just to know roughly where I'm headed, the diagram changed and expanded as the project advanced.
+
 ## Phase 1: Repository Setup 
 I set up 3 repositories for this project,
 1) [LetsReview-App](https://github.com/adigaandyt/LetsReview-App) The application repo which contains
@@ -74,4 +79,23 @@ I set up 3 repositories for this project,
     - Test script for an E2E test for all the API calls
 
 
-2) [LetsReview-Infra](https://github.com/adigaandyt/LetsReview-Infra)
+2) [LetsReview-Infra](https://github.com/adigaandyt/LetsReview-Infra) Infarstructure as code repo which containts
+    -  Terraform code for the AWS Infarstratcture that will host the application
+    -  Terraform modules for Network, EKS, Nodes and ArgoCD
+    -  ArgoCD Values file
+  
+3) [LetsReview-GitOps](https://github.com/adigaandyt/LetsReview-GitOps) - GitOps repository used to manage the state of the cluster using this repository as the single source of truth and ArgoCD, utilizing an app of apps deployment pattern. It contains:
+   - A `parent-app.yaml` file which acts as the parent application.
+   - Helm charts for:
+     - The application - The image is created and hosted on ECR, with the pipeline from [LetsReview-App](https://github.com/adigaandyt/LetsReview-App).
+     - MongoDB - For stateful set pods as the database.
+     - Cert-manager - For TLS management.
+     - EFK Stack - For logging.
+     - Kibana & Prometheus - For monitoring.
+     - Ingress NGINX - To provide an ingress controller.
+
+## Phase 3: Development
+I wrote a simple single file flask application with a few REST API endpoints that does CRUD operations with a MongoDB database, and added a single HTML page to have NGINX serve static content, this wasn't the focus of the project so it was make fast and simple with GET/POST/PUT/DELETE requests and a /metrics endpoint for prometheus with log outputs for EFK
+
+## Phase 4: Containerization
+
