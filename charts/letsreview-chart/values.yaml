@@ -6,7 +6,7 @@ app:
 
     image: 
       rep: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/our_library
-      tag: 1.0.11
+      tag: 1.0.12
       pullPolicy: Always 
 
 # Values for MongoDB child/dependency chart
