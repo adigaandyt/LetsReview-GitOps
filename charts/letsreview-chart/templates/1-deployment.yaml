@@ -17,22 +17,15 @@ spec:
         image: "{{ .Values.app.deployment.image.rep }}:{{ .Values.app.deployment.image.tag }}" 
         imagePullPolicy: {{.Values.app.deployment.image.pullPolicy}}
         ports:
-        - name: web # For prometheus 
-          containerPort: 7070 # could also call from the port in the env section 
+        - name: web 
+          containerPort: 7070 
         resources:
           requests:
-            memory: "64Mi"  # Request 64 megabytes of memory
-            cpu: "250m"      # Request 250 milliCPU (0.25 CPU core)
+            memory: "64Mi"  
+            cpu: "250m"      
           limits:
-            memory: "128Mi"  # Limit memory usage to 128 megabytes
-            cpu: "500m"      # Limit CPU usage to 500 milliCPU (0.5 CPU core)     
-        #Replace data in the .env folder of both backend and frontend 
-        #username
-        #password
-        #database
-        #mongodb-passwords
-        #mongodb-root-password
-        #mongodb-replica-set-key
+            memory: "128Mi"  
+            cpu: "500m"        
 
         env:
         - name: MONGO_URL
