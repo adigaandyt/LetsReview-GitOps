@@ -15,7 +15,7 @@ mongodb:
   architecture: "replicaset"
   replicaCount: 2
   auth:
-    enabled: false
+    enabled: true
     usernames: ["myuser"]
     #passwords: ["mypass"]
     databases: ["mydb"]
