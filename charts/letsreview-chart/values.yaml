@@ -13,7 +13,7 @@ app:
 mongodb:
   fullnameOverride: mongodb
   architecture: "replicaset"
-  replicaCount: 2 
+  replicaCount: 2
   auth:
     enabled: true
     usernames: ["myuser"]

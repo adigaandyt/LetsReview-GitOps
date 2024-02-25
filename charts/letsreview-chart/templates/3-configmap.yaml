@@ -4,3 +4,5 @@ metadata:
   name: {{ .Values.app.name }}-config
 data:
   DNS_ADDRESS: "https://{{ .Values.app.dns }}"
+  MONGO_URL: mongodb://myuser:mypass@mongodb-headless:27017/mydb?replicaSet=rs0
+
