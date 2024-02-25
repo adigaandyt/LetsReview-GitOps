@@ -33,11 +33,11 @@ spec:
             secretKeyRef:
               name: external-db-secrets
               key: MONGO_URL
-        - name: DATABASE_NAME
+        - name: db_name
           valueFrom:
             secretKeyRef:
               name: external-db-secrets
-              key: DATABASE_NAME
+              key: db_name
         - name: DNS_ADDRESS
           valueFrom:
             configMapKeyRef:
