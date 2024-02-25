@@ -17,9 +17,9 @@ mongodb:
   auth:
     enabled: true
     usernames: ["myuser"]
-    mongodb-passwords: ["mypass"]
+    passwords: ["mypass"]
     databases: ["mydb"]
-    #existingSecret: "external-db-secrets" 
+    existingSecret: "external-db-secrets" 
     rootUser: "root"
   persistence:
     enabled: true
