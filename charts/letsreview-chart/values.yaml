@@ -19,7 +19,7 @@ mongodb:
     usernames: myuser
     password: mypass
     database: mydb
-    #existingSecret: "external-db-secrets" 
+    existingSecret: "external-db-secrets" 
     rootUser: root
     rootPassword: root
   persistence:
