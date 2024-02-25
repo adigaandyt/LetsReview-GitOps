@@ -16,12 +16,12 @@ mongodb:
   replicaCount: 2 
   auth:
     enabled: true
-    username: myuser
-    password: mypass
-    database: mydb
+    usernames: ["myuser"]
+    #passwords: ["mypass"]
+    databases: ["mydb"]
     existingSecret: "external-db-secrets" 
     rootUser: root
-    rootPassword: root
+    #rootPassword: root
   persistence:
     enabled: true
     storageClass: "ebs-csi-gp3" 
