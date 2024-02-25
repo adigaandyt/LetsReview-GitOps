@@ -17,7 +17,7 @@ mongodb:
   auth:
     enabled: true
     usernames: ["myuser"]
-    # passwords: external-db-secrets created by Terraform
+    passwords: ["mypass"]
     databases: ["mydb"]
     existingSecret: "external-db-secrets" 
     rootUser: "root"
