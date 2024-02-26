@@ -27,11 +27,11 @@ spec:
             memory: "128Mi"  
             cpu: "500m"        
         env:
-        # - name: MONGO_URL
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: {{ .Values.app.name }}-config
-        #       key: MONGO_URL
+        - name: MONGO_URL
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.app.name }}-config
+              key: MONGO_URL
         - name: db_name
           valueFrom:
             secretKeyRef:
@@ -44,5 +44,3 @@ spec:
               key: DNS_ADDRESS
         - name: VERSION
           value: "{{ .Values.app.deployment.image.tag }}"
-        - name: MONGO_URL
-          value: "mongodb://myuser:mypass@mongodb-0.mongodb-headless.letsreview.svc.cluster.local:27017/mydb?replicaSet=rs0"

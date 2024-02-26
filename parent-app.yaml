@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: parent-app
   namespace: argocd
-  # finalizers:
-  # - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -14,9 +12,6 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
-  # sshPrivateKeySecret:
-  #   name: private-repo-secret  # Name of the secret containing the SSH private key
-  #   key: sshPrivateKey
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

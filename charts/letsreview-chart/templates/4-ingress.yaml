@@ -11,7 +11,7 @@ spec:
   - host: {{.Values.app.dns}}
     http:
       paths:
-      - path: /
+      - path: /app
         pathType: Prefix
         backend:
           service:
