@@ -31,7 +31,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: external-db-secrets
-              key: MONGO_URL
+              key: mongo-url
         - name: db_name
           valueFrom:
             secretKeyRef:
