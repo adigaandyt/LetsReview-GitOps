@@ -30,4 +30,4 @@ mongodb:
     enabled: true
   tls:
     enabled: true
-    existingSecret: letsencrypt-prod-private-key
+    existingSecret: letsreview-tls
