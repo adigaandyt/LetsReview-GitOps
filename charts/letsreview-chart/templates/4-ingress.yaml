@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: {{ .Values.app.name }}-ingress
   namespace: {{ .Values.app.name }}
-  # annotations:
-  #   cert-manager.io/cluster-issuer: "letsencrypt"  # Reference your ClusterIssuer
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"  # Reference your ClusterIssuer
 spec:
   ingressClassName: nginx
   rules:
@@ -18,7 +18,7 @@ spec:
             name: {{ .Values.app.name }}-service
             port:
               number: 80
-  # tls:  # TLS configuration starts here
-  # - hosts:
-  #   - {{.Values.app.dns}}
-  #   secretName: {{ .Values.app.name }}-tls  # cert-manager will store the obtained certificate here
+  tls:  # TLS configuration starts here
+  - hosts:
+    - {{.Values.app.dns}}
+    secretName: {{ .Values.app.name }}-tls  # cert-manager will store the obtained certificate here

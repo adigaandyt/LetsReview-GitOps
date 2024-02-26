@@ -28,3 +28,6 @@ mongodb:
     size: 1Gi
   arbiter:
     enabled: true
+  tls:
+    enabled: true
+    existingSecret: letsencrypt-prod-private-key
