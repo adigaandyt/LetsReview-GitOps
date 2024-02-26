@@ -29,8 +29,8 @@ spec:
         env:
         - name: MONGO_URL
           valueFrom:
-            configMapKeyRef:
-              name: {{ .Values.app.name }}-config
+            secretKeyRef:
+              name: external-db-secrets
               key: MONGO_URL
         - name: db_name
           valueFrom:
