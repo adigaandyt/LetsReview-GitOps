@@ -28,6 +28,3 @@ mongodb:
     size: 1Gi
   arbiter:
     enabled: true
-  tls:
-    enabled: true
-    existingSecret: letsreview-tls
