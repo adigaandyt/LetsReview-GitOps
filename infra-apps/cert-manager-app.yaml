@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://charts.jetstack.io
-      targetRevision: 1.13.3
-      chart: cert-manager
+    - repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git  
+      targetRevision: main
+      path: charts/cert-manager
       helm:
         values: |
           installCRDs: true 

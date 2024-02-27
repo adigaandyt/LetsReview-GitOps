@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: controller
+  name: nginx-controller
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://kubernetes.github.io/ingress-nginx # Replace with the Helm chart repository URL
-    targetRevision: 4.9.0 # Replace with the version of the Helm chart
-    chart: ingress-nginx # Replace with the path to the Helm chart within the repository
+    repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git  
+    targetRevision: main  
+    path: charts/ingress-nginx  
   destination:
-    server: "https://kubernetes.default.svc" # Replace with the Kubernetes cluster URL
-    namespace: ingress # The namespace where you want to install the Ingress Controller
+    server: "https://kubernetes.default.svc" 
+    namespace: ingress 
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

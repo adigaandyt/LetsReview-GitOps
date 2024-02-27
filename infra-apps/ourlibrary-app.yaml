@@ -2,19 +2,19 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: letsreview-app
-  namespace: argocd  # Namespace where the Argo CD Application will be created
+  namespace: argocd  
 spec:
-  project: default  # Project name (You can create a project before this step)
+  project: default 
   source:
-    repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git  # URL of your Helm chart repository
-    targetRevision: main  # The branch, tag, or commit you want to use
-    path: charts/letsreview-chart  # Path to your Helm chart within the repository
+    repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git  
+    targetRevision: main  
+    path: charts/letsreview-chart  
   destination:
-    server: 'https://kubernetes.default.svc'  # URL of your Kubernetes cluster
-    namespace: letsreview  # Namespace where the Helm chart should be deployed
+    server: 'https://kubernetes.default.svc'  
+    namespace: letsreview  
   syncPolicy:
     syncOptions:
-      - CreateNamespace=true # automatically creates our custom namespace
+      - CreateNamespace=true 
     automated:
-      prune: true # or false, depending on your needs
-      selfHeal: true # or false, based on preference
+      prune: true 
+      selfHeal: true 
