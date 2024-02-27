@@ -6,15 +6,12 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 55.8.1
-      chart: kube-prometheus-stack
+    - repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git  
+      targetRevision: main
+      path: charts/kube-prometheus-stack
       helm:
         valueFiles:
-          - "$mycharts/values/kps-values.yaml"
-    - repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git
-      targetRevision: HEAD
-      ref: mycharts
+          - "./values/kps-values.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus
