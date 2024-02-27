@@ -11,7 +11,7 @@ spec:
       path: charts/kube-prometheus-stack
       helm:
         valueFiles:
-          - "./values/kps-values.yaml"
+          - "../../values/kps-values.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus
