@@ -1,6 +1,6 @@
 app:
   name: letsreview
-  dns: ourlib.ddns.net
+  dns: app.letsreview.com #ourlib.ddns.net
   deployment:
     replicaCount: 1
 
