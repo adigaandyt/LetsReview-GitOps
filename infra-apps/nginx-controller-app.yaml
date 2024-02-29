@@ -9,6 +9,9 @@ spec:
     repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git  
     targetRevision: main  
     path: charts/ingress-nginx  
+    helm:
+        valueFiles:
+          - "../../values/nginx-controller-values.yaml"
   destination:
     server: "https://kubernetes.default.svc" 
     namespace: ingress 
