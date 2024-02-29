@@ -1,4 +1,15 @@
 prometheus:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts: ["letsreview-prom.ddns.net"]
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt"
+    tls:
+      - hosts:
+          - letsreview-prom.ddns.net
+        secretName: prometheus-tls
+    https: true
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
