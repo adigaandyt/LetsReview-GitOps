@@ -32,3 +32,17 @@ prometheus:
           - source_labels: [__meta_kubernetes_service_name]
             regex: prometheus-server
             action: drop
+
+
+grafana:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts: ["letsreview-grafana.ddns.net"]
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt"
+    tls:
+      - hosts:
+          - letsreview-grafana.ddns.net
+        secretName: grafana-tls
+    https: true
