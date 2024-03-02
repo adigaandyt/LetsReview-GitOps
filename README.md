@@ -1,4 +1,4 @@
-# LetsReview GitOps (STILL A WORK IN PROGRESS)
+# LetsReview GitOps
 This repository contains the GitOps configuration for [LetsReview](https://github.com/adigaandyt/LetsReview), using ArgoCD to manage deployments to an EKS cluster. The configuration defines the desired state of our applications and infrastructure, ensuring that our deployment environment is declarative, version-controlled, and automated.
 
 It also containers the workflow of my entire DevOps Portfolio Project
