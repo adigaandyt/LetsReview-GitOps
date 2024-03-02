@@ -11,6 +11,9 @@ spec:
     metadata:
       labels:
         app: {{ .Values.app.name }}
+      annotations:
+        prometheus.io/scrape: "true"  # Add this line
+        prometheus.io/port: "7070"
     spec:
       containers:
       - name: {{ .Values.app.name }}-container
