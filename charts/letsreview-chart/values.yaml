@@ -2,7 +2,7 @@ app:
   name: letsreview
   dns: letsreview-app.ddns.net
   deployment:
-    replicaCount: 1
+    replicaCount: 2
 
     image: 
       rep: 644435390668.dkr.ecr.eu-west-1.amazonaws.com/letsreview
