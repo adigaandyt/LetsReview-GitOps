@@ -112,7 +112,7 @@ Wrote a Jenkinsfile to have a CI/CD Pipeline which has the following steps:
   -  Push new value to GitOps repo - Push the tag to the values file on the GitOps repo to trigger ArgoCD to update our cluster's state
 The Jenkins file uses a .env.groovy file to pass the nessacry values such as the image and repos needed so you can use it in a different project and functions to handle versioning and tags
 
-!(jenkins pipeline)[https://github.com/adigaandyt/LetsReview-GitOps/blob/main/diagrams/jenkins.drawio.png]
+![jenkins pipeline](https://github.com/adigaandyt/LetsReview-GitOps/blob/main/diagrams/jenkins.drawio.png)
 
 
 ## Phase 6: Helm and GitOps
