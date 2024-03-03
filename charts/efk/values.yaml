@@ -76,13 +76,13 @@ fluent-bit:
     service: |
       [SERVICE]
           Daemon Off
-          Flush {{ .Values.fluent-bit.flush }}
+          Flush 5
           Log_Level debug
           Parsers_File /fluent-bit/etc/parsers.conf
           Parsers_File /fluent-bit/etc/conf/custom_parsers.conf
           HTTP_Server On
           HTTP_Listen 0.0.0.0
-          HTTP_Port {{ .Values.fluent-bit.metricsPort }}
+          HTTP_Port 7070
           Health_Check On
           Trace_Error On
 
