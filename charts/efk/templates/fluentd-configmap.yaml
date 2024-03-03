@@ -36,6 +36,20 @@ data:
       </parse>
     </source>
 
+    <source>
+      @id fluentd-ingress-controller.log
+      @type tail
+      path /var/log/containers/*ingress-nginx*.log
+      pos_file /var/log/containers/ingress-controller.log.pos
+      tag kubernetes.ingress-controller
+      read_from_head true
+      <parse>
+        @type json
+      </parse>
+    </source>
+
+
+
     # Parse HTTP messages
     <filter kubernetes.letsreview.**>
       @id filter_parser
