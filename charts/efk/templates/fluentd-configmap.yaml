@@ -22,6 +22,7 @@ data:
     </match>
 
     # Gather the logs from letsreview containers running in the cluster
+
     <source>
       @id fluentd-containers.log
       @type tail
@@ -30,9 +31,7 @@ data:
       tag kubernetes.letsreview.*
       read_from_head true
       <parse>
-        @type regexp
-        expression /^(?<k8s-timestamp>.+) (?<stream>stdout|stderr) [^ ]* \[(?<time>[^\]]+)\] (?<severity>[^\s]+) in (?<module>[^\:]+): (?<message>.+)$/
-        time_format %Y-%m-%d %H:%M:%S,%L
+        @type json
       </parse>
     </source>
 
@@ -47,7 +46,15 @@ data:
         @type json
       </parse>
     </source>
-
+    
+    <match kubernetes.ingress-controller>
+      @id elasticsearch-ingress
+      @type elasticsearch
+      host {{ include "elasticsearch.service.name" .Subcharts.elasticsearch }}
+      port {{ include "elasticsearch.service.ports.restAPI" .Subcharts.elasticsearch }}
+      index_name nginx-ingress-%Y.%m.%d
+      type_name _doc
+    </match>
 
 
     # Parse HTTP messages
