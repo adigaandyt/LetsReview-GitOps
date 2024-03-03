@@ -49,6 +49,11 @@ elasticsearch:
 
 
 fluent-bit:
+  serviceAccount:
+    create: true  
+    name: ""  
+    annotations: {}
+    automountServiceAccountToken: true  
   logLevel: info
   config:
     service: |
