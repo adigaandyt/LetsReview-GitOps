@@ -96,7 +96,7 @@ I set up 3 repositories for this project,
 
 ## Phase 3: Development
 I wrote a simple single file flask application with a few REST API endpoints that does CRUD operations with a MongoDB database, and added a single HTML page to have NGINX serve static content, this wasn't the focus of the project so it was make fast and simple with GET/POST/PUT/DELETE requests and a /metrics endpoint for prometheus with log outputs for EFK
-
+![3 tier app diagram](https://github.com/adigaandyt/LetsReview-App/blob/main/diagrams/docker-compose-arch.png)
 ## Phase 4: Containerization
 I wrote a dockerfile to containerize the application and to host it's image on ECR, and a docker-compose file for local testing, but because this is such a simple application I didn't use a multi-stage dockerfile, however, I did include a dockerfile for a different application that does have a multi-stage build just to demonstrate it
 
@@ -111,6 +111,9 @@ Wrote a Jenkinsfile to have a CI/CD Pipeline which has the following steps:
   -  Push tagged image to ECR - Tag the image with the new patch and push it to ECR
   -  Push new value to GitOps repo - Push the tag to the values file on the GitOps repo to trigger ArgoCD to update our cluster's state
 The Jenkins file uses a .env.groovy file to pass the nessacry values such as the image and repos needed so you can use it in a different project and functions to handle versioning and tags
+
+!(jenkins pipeline)[https://github.com/adigaandyt/LetsReview-GitOps/blob/main/diagrams/jenkins.drawio.png]
+
 
 ## Phase 6: Helm and GitOps
 I've provisioned a Kubernetes cluster using Terraform with AWS EKS for my application, I created the infrastructure using modules I wrote:
