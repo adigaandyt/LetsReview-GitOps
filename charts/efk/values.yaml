@@ -49,8 +49,8 @@ elasticsearch:
 
 fluent-bit:
   logLevel: info
-  flush: 5s
-  metricsPort: 8080
+  flush: 5
+  metricsPort: 7070
   # luaScripts:
   #   setIndex.lua: |
   #     function set_index(tag, timestamp, record)
