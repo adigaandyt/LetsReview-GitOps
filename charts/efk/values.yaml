@@ -48,8 +48,6 @@ elasticsearch:
 #     configMap: "fluentd-configmap"
 
 fluent-bit:
-  logLevel: info
-  flush: 5
   metricsPort: 7070
   # luaScripts:
   #   setIndex.lua: |
