@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: git@github.com:adigaandyt/LetsReview-GitOps.git  # URL of your Helm chart repository
     targetRevision: main  # The branch, tag, or commit you want to use
-    path: charts/EFK  # Path to your Helm chart within the repository
+    path: charts/efk  # Path to your Helm chart within the repository
   destination:
     server: 'https://kubernetes.default.svc'  # URL of your Kubernetes cluster
     namespace: efk  # Namespace where the Helm chart should be deployed

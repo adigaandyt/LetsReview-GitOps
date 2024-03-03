@@ -6,10 +6,10 @@ metadata:
 spec:
   namespaceSelector:
     matchNames:
-      - {{ .Values.app.name }}
+      - {{ .Values.app.name }} # service's selector app
   selector:
     matchLabels:
-      app: {{ .Values.app.name }}
+      app: {{ .Values.app.name }} # service should have this label
   endpoints:
   - port: web
     path: /metrics
