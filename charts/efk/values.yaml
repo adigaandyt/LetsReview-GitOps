@@ -76,7 +76,7 @@ fluent-bit:
     service: |
       [SERVICE]
           Daemon Off
-          Flush {{ .Value.fluent-bit.flush }}
+          Flush {{ .Values.fluent-bit.flush }}
           Log_Level debug
           Parsers_File /fluent-bit/etc/parsers.conf
           Parsers_File /fluent-bit/etc/conf/custom_parsers.conf
