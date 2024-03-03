@@ -115,7 +115,7 @@ The Jenkins file uses a .env.groovy file to pass the nessacry values such as the
 ![jenkins pipeline](https://github.com/adigaandyt/LetsReview-GitOps/blob/main/diagrams/jenkins.drawio.png)
 
 
-## Phase 6: Helm and GitOps
+## Phase 6: Terraform Infrastructure As Code
 I've provisioned a Kubernetes cluster using Terraform with AWS EKS for my application, I created the infrastructure using modules I wrote:
   -  **Network Module** - A module for provisiong network resources needed for the app which includes:
      - *VPC* - The virtual network that hosts everything, set cidr block based on user input
@@ -138,3 +138,10 @@ As you can see, we have addons and we have polocies to allow our nodes to use th
 
   -  **ArgoCD Module** - This module deploys ArgoCD onto the cluster on launch and is pointed to our GitOps repo using `bootstrap-app.yaml` so when we run ```Terraform apply``` the infarstructue goes up with ArgoCD already running and all the charts on the GitOps repo also running, it also creates two kuberentes secrets using AWS Secret Manager, an SSH key for the GitOps repo and the MongoDB database info
 
+## Phase 7: Helm and GitOps
+I used Helm to packag my application and managed it's deployment through GitOps principles using Argo CD and used an app of apps pattern.
+I made a root application resource called `parent-app.yaml` which acts as the parent app and manages all the other apps, it points to `infra-apps` folder which has yaml files each pointing to their respective helm chart.
+
+ArgoCD is monitoring this repo for any changes and then syncs the state in our cluster with our desired state in this repo, the changes come from Jenkins which updates the values.yaml of the application Helm chart this triggering ArgoCD to download the new image from ECR
+
+![app of apps](https://github.com/adigaandyt/LetsReview-GitOps/blob/main/diagrams/app-of-apps.PNG)
