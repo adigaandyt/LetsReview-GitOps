@@ -21,13 +21,13 @@ data:
       @type stdout
     </match>
 
-    # Gather the logs from taskit containers running in the cluster
+    # Gather the logs from letsreview containers running in the cluster
     <source>
       @id fluentd-containers.log
       @type tail
       path /var/log/containers/*.log
       pos_file /var/log/containers.log.pos
-      tag kubernetes.taskit.*
+      tag kubernetes.letsreview.*
       read_from_head true
       <parse>
         @type regexp
@@ -37,7 +37,7 @@ data:
     </source>
 
     # Parse HTTP messages
-    <filter kubernetes.taskit.**>
+    <filter kubernetes.letsreview.**>
       @id filter_parser
       @type parser
       key_name message
