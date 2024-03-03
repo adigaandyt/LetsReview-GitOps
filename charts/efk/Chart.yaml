@@ -28,7 +28,7 @@ dependencies:
     version: "8.0.0"  # Specify the version of the Elasticsearch chart you want to use
     repository: "file://./charts/elasticsearch"  # Path to the Elasticsearch subchart directory
 
-  - name: fluentd
+  - name: fluent-bit
     version: "5.0.0"  # Specify the version of the Fluentd chart you want to use
     repository: "file://./charts/fluentd"  # Path to the Fluentd subchart directory
 
