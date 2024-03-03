@@ -1,7 +1,7 @@
 # LetsReview GitOps
 This repository contains the GitOps configuration for [LetsReview](https://github.com/adigaandyt/LetsReview), using ArgoCD to manage deployments to an EKS cluster. The configuration defines the desired state of our applications and infrastructure, ensuring that our deployment environment is declarative, version-controlled, and automated.
 
-It also containers the workflow of my entire DevOps Portfolio Project
+It also contains the workflow of my entire DevOps Portfolio Project
 
 ArgoCD deploys the following using the **app of apps pattern**:
 - Our_Library Application
@@ -19,8 +19,8 @@ ArgoCD deploys the following using the **app of apps pattern**:
 - Credentials for the ArgoCD to access this repo
 
 ## Usage
-Deploy ArgoCD on your cluster and apply infra-apps-app.yaml or use the ArgoCD UI and use the + New App option, copy paste the yaml file into the EDIT AS YAML section.
-In this project ArgoCD get's installed using Terraform and a bootstrap application add the repo to ArgoCD automatically on startup
+Deploy ArgoCD on your cluster and apply `infra-apps-app.yaml` or use the ArgoCD UI and use the + New App option, copy paste the yaml file into the EDIT AS YAML section.
+In this project ArgoCD gets installed using Terraform, and a bootstrap application add the repo to ArgoCD automatically on startup
 [IaC Repo](https://github.com/adigaandyt/ourlibrary-infra) 
 
 ## GitOps Workflow
@@ -45,7 +45,7 @@ Using a workflow like this means that the only thing developers have to do is pu
 
 # DevOps Portfolio Project
 ## Overview
-This is here to summraize in phases the entire project in one place to demonstrate the technologies I used to a implement CI/CD pipeline
+This is here to summarize in phases the entire project in one place to demonstrate the technologies I used to a implement CI/CD pipeline
 
 ### Technology stack
 - **Ticketing** - Trello to track tasks and missions for the day/week
