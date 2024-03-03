@@ -145,3 +145,7 @@ I made a root application resource called `parent-app.yaml` which acts as the pa
 ArgoCD is monitoring this repo for any changes and then syncs the state in our cluster with our desired state in this repo, the changes come from Jenkins which updates the values.yaml of the application Helm chart this triggering ArgoCD to download the new image from ECR
 
 ![app of apps](https://github.com/adigaandyt/LetsReview-GitOps/blob/main/diagrams/app-of-apps.PNG)
+
+## Phase 8: Logging and Monitoring
+For this phase I've installed Prometheus and Grafana for monitoring and created a simple dashboard showing all the requests our Ingress Controller is getting.
+And I've installed Elasticsearch, Fluent-bit and Kibana for monitoring
