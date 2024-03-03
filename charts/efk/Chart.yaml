@@ -32,6 +32,6 @@ dependencies:
     version: "5.0.0"  # Specify the version of the Fluentd chart you want to use
     repository: "file://./charts/fluentd"  # Path to the Fluentd subchart directory
 
-  - name: kibana
-    version: "3.0.0"  # Specify the version of the Kibana chart you want to use
-    repository: "file://./charts/kibana"  # Path to the Kibana subchart directory
+  # - name: kibana
+  #   version: "3.0.0"  # Specify the version of the Kibana chart you want to use
+  #   repository: "file://./charts/kibana"  # Path to the Kibana subchart directory
